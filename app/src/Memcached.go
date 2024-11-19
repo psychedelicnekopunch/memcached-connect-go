@@ -13,8 +13,12 @@ type Memcached struct {
 
 
 func NewMemcached() *Memcached {
+
+	config := NewConfig()
+
 	return &Memcached{
-		Connect: memcache.New("memcached-connect-go-memcached:11211"),
+		// Connect: memcache.New("memcached-connect-go-memcached:11211"),
+		Connect: memcache.New(config.Host),
 	}
 }
 
