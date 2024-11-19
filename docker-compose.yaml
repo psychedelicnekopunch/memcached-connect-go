@@ -1,0 +1,16 @@
+
+services:
+    memcached-connect-go-app:
+        depends_on:
+            - memcached-connect-go-memcached
+        image: golang:1.23.2
+        volumes:
+            - ./app:/var/www/html
+        tty: true
+        working_dir: /var/www/html
+    memcached-connect-go-memcached:
+        image: memcached:1.6.32
+        command:
+              - --conn-limit=1024
+              - --memory-limit=64
+              - --threads=4
